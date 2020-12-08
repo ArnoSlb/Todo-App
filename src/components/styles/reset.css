@@ -49,3 +49,20 @@ table {
 input:focus {
     outline: none;
 }
+button {
+	border: none;
+	background: none;
+}
+
+button:focus {
+	border: none;
+}
+
+href {
+	text-decoration: none;
+	
+}
+a:link {
+    text-decoration: none;
+    color: hsl(233, 14%, 35%);
+}
