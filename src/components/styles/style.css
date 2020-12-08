@@ -1,0 +1,96 @@
+body {
+    background-color: hsl(235, 21%, 11%);
+}
+
+#app {
+    margin:  0 !important;
+    font-size: 18px;
+    width: 100%;
+}
+
+.todo-app {
+    width: 40%;
+    margin: 0 auto;
+    font-family: 'Josefin Sans', sans-serif;
+    position: absolute;
+    top: 8%;
+    left: calc(50% - 20vw);
+}
+
+.todo-app-header {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 30px;
+}
+
+h1 {
+    font-size: 40px;
+    color: hsl(0, 0%, 98%);
+    letter-spacing: .5rem;
+    font-weight: bold;
+}
+
+.icon-mode {
+    width: 20px;
+    height: 20px;
+    margin-top: 10px;
+}
+
+input {
+    border: none;
+    text-decoration: none;
+    background: none;
+    font-family: 'Josefin Sans', sans-serif;
+    font-size: 17px;
+    background-color: hsl(235, 24%, 19%);
+    width: calc(100% - 74px);
+    padding: 20px 0;
+    padding-left: 74px;
+    color: #757575;
+    margin-bottom: 30px;
+
+}
+
+.task {
+    width: calc(100%);
+    background-color: hsl(235, 24%, 19%);
+    display: flex;
+    padding: 18px 0;
+    color: hsl(234, 39%, 85%);
+    border-bottom: 1px solid #3b3942;
+}
+
+.task-check {
+    width: 12px;
+    height: 12px;
+    padding: 6px;
+    background: linear-gradient(to bottom right, hsl(192, 100%, 67%),  hsl(280, 87%, 65%));
+    border-radius: 50%;
+    margin: 0 25px;
+}
+
+.task-text {
+    margin-top: 5px;
+}
+
+.footer-app {
+    display: flex;
+    justify-content: space-between;
+    font-size: 15px;
+    color: hsl(233, 14%, 35%);
+    background-color: hsl(235, 24%, 19%);
+    padding: 20px 25px;
+}
+
+.footer-status {
+    display: flex;
+}
+
+.status {
+    margin: 0 6px;
+}
+
+.status-active {
+    margin: 0 6px;
+    color: hsl(220, 98%, 61%);
+}
