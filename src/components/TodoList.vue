@@ -113,15 +113,15 @@ export default {
         goCompleted: function(event){
             // console.log('goCompleted', event.target.parentNode.parentNode.id);
             // console.log('goCompleted',event.target.parentNode.innerText);
-            this.tabTasks.splice(event.target.parentNode.parentNode.id, 1,);
-            this.tabCompleted.push(event.target.parentNode.innerText);
+            this.tabTasks.splice(event.target.parentNode.parentNode.parentNode.id, 1,);
+            this.tabCompleted.push(event.target.parentNode.parentNode.innerText);
             
         },
         goActive: function(event){
             // console.log('goActive', event.target.parentNode.parentNode.id);
             // console.log('goActive', event.target.parentNode.innerText);
-            this.tabCompleted.splice(event.target.parentNode.parentNode.id, 1);
-            this.tabTasks.push(event.target.parentNode.innerText);
+            this.tabCompleted.splice(event.target.parentNode.parentNode.parentNode.id, 1);
+            this.tabTasks.push(event.target.parentNode.parentNode.innerText);
 
         },
         filterAll: function(){
