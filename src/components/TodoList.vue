@@ -11,25 +11,43 @@
                 <input v-model="formData.task" v-on:keyup.enter="createItem" type="text" id="action" placeholder="Create a new todo...">
             <div v-if="filter === 'all'">
                 <ul>
-                    <li v-bind:key="index" v-for="(task,index) in tabTasks">
-                        <item v-bind:id="index" v-bind:task="task" :goCompleted="goCompleted"></item>
+                    <li v-bind:key="task" v-for="(task,index) in tabTasks">
+                        <item 
+                            v-bind:id="index" 
+                            v-bind:task="task" 
+                            :goCompleted="goCompleted"
+                        ></item>
                     </li>
-                    <li v-bind:key="index+100" v-for="(task,index) in tabCompleted">
-                        <itemCompleted v-bind:id="index" v-bind:task="task" :clearCompleted="clearCompleted" :goActive="goActive"></itemCompleted>
+                    <li v-bind:key="task" v-for="(task,index) in tabCompleted">
+                        <itemCompleted 
+                            v-bind:id="index" 
+                            v-bind:task="task" 
+                            :clearCompleted="clearCompleted" 
+                            :goActive="goActive"
+                        ></itemCompleted>
                     </li>
                 </ul>
             </div>
             <div v-if="filter === 'active'">
                 <ul>
-                    <li v-bind:key="index" v-for="(task,index) in tabTasks">
-                        <item v-bind:id="index" v-bind:task="task" :goCompleted="goCompleted"></item>
+                    <li v-bind:key="task" v-for="(task,index) in tabTasks">
+                        <item 
+                            v-bind:id="index" 
+                            v-bind:task="task" 
+                            :goCompleted="goCompleted"
+                        ></item>
                     </li>
                 </ul>
             </div>
             <div v-if="filter === 'completed'">
                 <ul>
-                    <li v-bind:key="index+100" v-for="(task,index) in tabCompleted">
-                        <itemCompleted v-bind:id="index" v-bind:task="task" :clearCompleted="clearCompleted" :goActive="goActive"></itemCompleted>
+                    <li v-bind:key="task" v-for="(task,index) in tabCompleted">
+                        <itemCompleted 
+                            v-bind:id="index" 
+                            v-bind:task="task" 
+                            :clearCompleted="clearCompleted" 
+                            :goActive="goActive"
+                        ></itemCompleted>
                     </li>
                 </ul>
             </div>
@@ -65,6 +83,7 @@ import ItemCompleted from './ItemCompleted'
 
 const desktopBg = '../assets/images/bg-desktop-dark.jpg';
 
+
 export default {
     name: 'TodoList',
     data(){
@@ -72,47 +91,57 @@ export default {
             formData: {
                 task: ''
             },
-            tabTasks: ['Learn Node.js'],
-            tabCompleted: ['Learn Javascript'],
+            tabTasks: [],
+            tabCompleted: [],
             desktopBg: desktopBg,
             filter: "all",
         }
     },
+    // created(){
+    //     console.log(this.tabTasks)
+    //     console.log(this.tabCompleted)
+    // },
+    // updated(){
+    //     console.log(this.tabTasks)
+    //     // console.log(this.tabCompleted)
+    // },
     methods: {
         createItem: function(){
             this.tabTasks.push(this.formData.task);
             this.formData.task='';
         },
-        clearCompleted: function(event){
-            console.log(event.target.parentNode.id);
+        clearCompleted: function(){
+            // console.log(event.target.parentNode.id);
             this.tabCompleted.splice(0, 1000);
         },
         goCompleted: function(event){
-            const element = event.target.parentNode;
-            this.tabTasks.splice(event.target.parentNode.id, 1,);
-            this.tabCompleted.push(element.innerText);
+            // console.log('goCompleted', event.target.parentNode.parentNode.id);
+            // console.log('goCompleted',event.target.parentNode.innerText);
+            this.tabTasks.splice(event.target.parentNode.parentNode.id, 1,);
+            this.tabCompleted.push(event.target.parentNode.innerText);
             
         },
         goActive: function(event){
-            this.tabCompleted.splice(event.target.parentNode.id, 1,);
-            const element = event.target.parentNode;
-            const elementParent = element.parentNode;
-            this.tabTasks.push(elementParent.innerText);  
+            // console.log('goActive', event.target.parentNode.parentNode.id);
+            // console.log('goActive', event.target.parentNode.innerText);
+            this.tabCompleted.splice(event.target.parentNode.parentNode.id, 1);
+            this.tabTasks.push(event.target.parentNode.innerText);
+
         },
         filterAll: function(){
-            console.log('je passe dans filter All');
+            // console.log('je passe dans filter All');
             this.filter = "all";
-            console.log(this.filter);
+            // console.log(this.filter);
         },
         filterActive: function(){
-            console.log('je passe dans filter Active');
+            // console.log('je passe dans filter Active');
             this.filter = "active";
-            console.log(this.filter);
+            // console.log(this.filter);
         },
         filterCompleted: function(){
-            console.log('je passe dans filter Completed');
+            // console.log('je passe dans filter Completed');
             this.filter = "completed";
-            console.log(this.filter);
+            // console.log(this.filter);
         }
     },
     components: {
