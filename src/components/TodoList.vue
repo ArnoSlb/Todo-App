@@ -52,7 +52,7 @@
                 </ul>
             </div>
             <div class="footer-app">
-                <p class="items">{{tabTasks.length}} items left</p>
+                <p class="items">{{tabTasks.length}} task(s) left to do</p>
                 <div class="footer-status">
                     <div v-if="filter === 'all'">
                         <a id=all class="status-active" href="" v-on:click.prevent="filterAll">All</a>
