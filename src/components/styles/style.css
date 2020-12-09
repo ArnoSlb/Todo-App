@@ -1,11 +1,12 @@
 body {
-    background-color: hsl(235, 21%, 11%);
+    background-color: hsl(240, 20%, 4%);
 }
 
 #app {
     margin:  0 !important;
     font-size: 18px;
-    width: 100%;
+    width: 100vw;
+    height: 100vh;
 }
 
 .todo-app {
@@ -15,6 +16,10 @@ body {
     position: absolute;
     top: 8%;
     left: calc(50% - 20vw);
+}
+
+.background-image {
+    width: 100vw;
 }
 
 .todo-app-header {
@@ -55,42 +60,125 @@ input {
     width: calc(100%);
     background-color: hsl(235, 24%, 19%);
     display: flex;
-    padding: 18px 0;
+    padding: 20px 0 25px;
     color: hsl(234, 39%, 85%);
     border-bottom: 1px solid #3b3942;
+    height: 20px;
+    
+
 }
 
 .task-check {
+    position: absolute;
+    left: -50px;
+    top: -6px;
+    width: 11px;
+    height: 11px;
+    padding: 6px;
+    border: 2px solid  #3b3942;
+    border-radius: 50%;
+
+}
+
+.task-text {
+    margin-top: 5px;
+    margin-left: 74px;
+    position: absolute;
+}
+
+.task-completed {
+    width: calc(100%);
+    background-color: hsl(235, 24%, 19%);
+    display: flex;
+    padding: 18px 0;
+    color: #3b3942;
+    border-bottom: 1px solid #3b3942;
+    height: 28px;
+}
+
+.task-completed-check {
+    position: absolute;
+    left: -72px;
+    top: -6px;
     width: 12px;
     height: 12px;
-    padding: 6px;
+    padding: 6px; 
     background: linear-gradient(to bottom right, hsl(192, 100%, 67%),  hsl(280, 87%, 65%));
     border-radius: 50%;
     margin: 0 25px;
 }
 
-.task-text {
+.task-completed-text {
     margin-top: 5px;
+    margin-left: 74px;
+    position: absolute;
+    text-decoration: line-through;
 }
 
 .footer-app {
     display: flex;
     justify-content: space-between;
     font-size: 15px;
-    color: hsl(233, 14%, 35%);
+    color: hsl(233, 14%, 35%) !important;
     background-color: hsl(235, 24%, 19%);
     padding: 20px 25px;
 }
 
 .footer-status {
     display: flex;
+    margin-top: 3px;
 }
+
 
 .status {
     margin: 0 6px;
+    padding: 3px;
+    color: hsl(233, 14%, 35%) !important;
+}
+
+.items {
+    margin: 0 6px;
+    padding: 3px 0;
+}
+
+.status:hover {
+    color: hsl(220, 98%, 61%) !important;
 }
 
 .status-active {
     margin: 0 6px;
     color: hsl(220, 98%, 61%);
+    padding: 3px;
+}
+
+.clearCompleted{
+    padding: 3px 5px;
+    color: hsl(233, 14%, 35%);
+
+}
+
+.clearCompleted:hover {
+    background-color: red;
+    color: white;
+    border-radius: 5px;
+}
+
+@media screen and (max-width: 900px) {
+    .todo-app {
+        width: 90%;
+        left: calc(50% - 45vw);
+    }
+
+    .footer-app {
+        flex-direction: column;
+    }
+
+    .items {
+        margin-bottom: 10px;
+    }
+
+    .footer-status {
+        margin-bottom: 14px;
+        justify-content: space-around;
+    }
 }
