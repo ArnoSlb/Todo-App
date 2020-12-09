@@ -1,20 +1,21 @@
 <template>
     <div>
-        <img class="background-image" src="../assets/images/bg-desktop-dark.jpg" alt="background image">
-        <!-- <div>{{desktopBg}}</div>
-        <img :src="desktopBg" alt=""> -->
+        <img v-if="darkmode" class="background-image" src="../assets/images/bg-desktop-dark.jpg" alt="background image">
+        <img v-else class="background-image" src="../assets/images/bg-desktop-light.jpg" alt="background image">
         <div class="todo-app">
             <div class="todo-app-header">
                 <h1>TODO</h1>
-                <img class="icon-mode" src="../assets/images/icon-sun.svg" alt="">
+                <a v-if="darkmode" href="" v-on:click.prevent="switchMode">><img  class="icon-mode" src="../assets/images/icon-sun.svg" alt="icon lightmode"></a>
+                <a v-else href="" v-on:click.prevent="switchMode"><img  class="icon-mode" src="../assets/images/icon-moon.svg" alt="icon darkmode"></a>
             </div>
                 <input v-model="formData.task" v-on:keyup.enter="createItem" type="text" id="action" placeholder="Create a new todo...">
             <div v-if="filter === 'all'">
                 <ul>
                     <li v-bind:key="task" v-for="(task,index) in tabTasks">
-                        <item 
+                        <item class="item"
                             v-bind:id="index" 
                             v-bind:task="task" 
+                            v-bind:darkmode="darkmode"
                             :goCompleted="goCompleted"
                         ></item>
                     </li>
@@ -22,6 +23,7 @@
                         <itemCompleted 
                             v-bind:id="index" 
                             v-bind:task="task" 
+                            v-bind:darkmode="darkmode"
                             :clearCompleted="clearCompleted" 
                             :goActive="goActive"
                         ></itemCompleted>
@@ -34,6 +36,7 @@
                         <item 
                             v-bind:id="index" 
                             v-bind:task="task" 
+                            v-bind:darkmode="darkmode"
                             :goCompleted="goCompleted"
                         ></item>
                     </li>
@@ -45,6 +48,7 @@
                         <itemCompleted 
                             v-bind:id="index" 
                             v-bind:task="task" 
+                            v-bind:darkmode="darkmode"
                             :clearCompleted="clearCompleted" 
                             :goActive="goActive"
                         ></itemCompleted>
@@ -83,7 +87,6 @@ import ItemCompleted from './ItemCompleted'
 
 const desktopBg = '../assets/images/bg-desktop-dark.jpg';
 
-
 export default {
     name: 'TodoList',
     data(){
@@ -95,16 +98,9 @@ export default {
             tabCompleted: [],
             desktopBg: desktopBg,
             filter: "all",
+            darkmode: true,
         }
     },
-    // created(){
-    //     console.log(this.tabTasks)
-    //     console.log(this.tabCompleted)
-    // },
-    // updated(){
-    //     console.log(this.tabTasks)
-    //     // console.log(this.tabCompleted)
-    // },
     methods: {
         createItem: function(){
             this.tabTasks.push(this.formData.task);
@@ -142,6 +138,25 @@ export default {
             // console.log('je passe dans filter Completed');
             this.filter = "completed";
             // console.log(this.filter);
+        },
+        switchMode: function(){
+            this.darkmode=!this.darkmode;
+            if (this.darkmode===false) {
+                let app = document.getElementById('app');
+                app.style.backgroundColor = 'hsl(236, 33%, 92%)';
+                let action = document.getElementById('action');
+                action.style.backgroundColor = ' hsl(0, 0%, 98%)';
+                let footer = document.querySelectorAll(".footer-app");
+                footer[0].style.backgroundColor = 'hsl(0, 0%, 98%)';
+            }
+            else {
+                let app = document.getElementById('app');
+                app.style.backgroundColor = 'hsl(240, 20%, 4%)';
+                let action = document.getElementById('action');
+                action.style.backgroundColor = 'hsl(235, 24%, 19%)';
+                let footer = document.querySelectorAll(".footer-app");
+                footer[0].style.backgroundColor = 'hsl(235, 24%, 19%)';
+            }
         }
     },
     components: {
