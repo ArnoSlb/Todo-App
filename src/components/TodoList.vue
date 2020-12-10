@@ -1,7 +1,13 @@
 <template>
     <div>
-        <img v-if="darkmode" class="background-image" src="../assets/images/bg-desktop-dark.jpg" alt="background image">
-        <img v-else class="background-image" src="../assets/images/bg-desktop-light.jpg" alt="background image">
+        <div v-if="darkmode">
+            <img v-if="tailles.width > 720" class="background-image" src="../assets/images/bg-desktop-dark.jpg" alt="background image">
+            <img v-else class="background-image" src="../assets/images/bg-mobile-dark.jpg" alt="background image">
+        </div>
+        <div v-else>
+             <img v-if="tailles.width > 720" class="background-image" src="../assets/images/bg-desktop-light.jpg" alt="background image">
+             <img v-else class="background-image" src="../assets/images/bg-mobile-light.jpg" alt="background image">
+        </div>
         <div class="todo-app">
             <div class="todo-app-header">
                 <h1>TODO</h1>
@@ -87,6 +93,18 @@ import ItemCompleted from './ItemCompleted'
 
 const desktopBg = '../assets/images/bg-desktop-dark.jpg';
 
+
+function viewportSize() {
+  var d = document.documentElement;
+  console.log(d)
+  return {
+    height: d.clientHeight,
+    width: d.clientWidth,
+  };
+}
+
+
+
 export default {
     name: 'TodoList',
     data(){
@@ -99,6 +117,7 @@ export default {
             desktopBg: desktopBg,
             filter: "all",
             darkmode: true,
+            tailles: viewportSize(),
         }
     },
     methods: {
@@ -157,7 +176,7 @@ export default {
                 let footer = document.querySelectorAll(".footer-app");
                 footer[0].style.backgroundColor = 'hsl(235, 24%, 19%)';
             }
-        }
+        },
     },
     components: {
         'item': Item,
